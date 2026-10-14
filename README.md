@@ -16,16 +16,16 @@
 
 ## Overview
 
-**Hush Processor** is a high-performance, privacy-hardened C++20 DAW core and audio processing framework engineered for deterministic real-time performance[span_0](start_span)[span_0](end_span). Built with zero telemetry, zero placeholder stubs, and absolute hardware efficiency, Hush delivers jitter-free multitrack scaling for professional audio environments.
+**Hush Processor** is a high-performance, privacy-hardened C++20 DAW core and audio processing framework engineered for deterministic real-time performance. Built with zero telemetry, zero placeholder stubs, and absolute hardware efficiency, Hush delivers jitter-free multitrack scaling for professional audio environments.
 
 ---
 
 ## Key Architectural Pillars
 
-* **Zero Allocation on Audio Thread**: Pre-allocated track pooling and fixed memory models ensure absolute safety from garbage collection or heap allocation jitter during playback[span_1](start_span)[span_1](end_span).
-* **Lock-Free Concurrency**: Asynchronous communication between UI/worker threads and the real-time audio thread is governed by a high-performance **SPSC (Single-Producer Single-Consumer) command queue** (`include/hush/control/command_queue.hpp`), completely eliminating priority inversion and mutex contention[span_2](start_span)[span_2](end_span).
-* **Runtime SIMD Dispatch**: Automatically detects and leverages hardware-native vector instruction sets (**SSE2**, **AVX2**, and **ARM NEON** via `src/simd/dispatch.cpp`) to accelerate heavy mix summing and DSP passes[span_3](start_span)[span_3](end_span).
-* **Uncompromising DSP**: Features integrated Simper State Variable Filters (`simper_svf.cpp`), multi-stage peak limiters (`limiter.cpp`), and sample-level amplitude clamping to completely eliminate digital clipping, sub-sample instability, and buffer underruns[span_4](start_span)[span_4](end_span).
+* **Zero Allocation on Audio Thread**: Pre-allocated track pooling and fixed memory models ensure absolute safety from garbage collection or heap allocation jitter during playback.
+* **Lock-Free Concurrency**: Asynchronous communication between UI/worker threads and the real-time audio thread is governed by a high-performance **SPSC (Single-Producer Single-Consumer) command queue** (`include/hush/control/command_queue.hpp`), completely eliminating priority inversion and mutex contention.
+* **Runtime SIMD Dispatch**: Automatically detects and leverages hardware-native vector instruction sets (**SSE2**, **AVX2**, and **ARM NEON** via `src/simd/dispatch.cpp`) to accelerate heavy mix summing and DSP passes.
+* **Uncompromising DSP**: Features integrated Simper State Variable Filters (`simper_svf.cpp`), multi-stage peak limiters (`limiter.cpp`), and sample-level amplitude clamping to completely eliminate digital clipping, sub-sample instability, and buffer underruns.
 
 ---
 
