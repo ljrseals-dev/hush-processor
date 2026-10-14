@@ -3,7 +3,7 @@
 # HUSH PROCESSOR v0.2.0
 ### *Zero Telemetry. Deterministic Real-Time Audio Engine.*
 
-<img src="watermarked_img_686974314975895486.jpg" alt="Hush Engine v0.2.0 Banner" width="100%">
+<img src="1792013329061.jpg.jpg" alt="Hush Engine v0.2.0 Banner" width="100%">
 
 [![C++20 Standard](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
 [![Zero Telemetry](https://img.shields.io/badge/Telemetry-None-success.svg)]()
