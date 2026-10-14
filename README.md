@@ -23,7 +23,7 @@ A high-performance C++ audio processing and plugin-hosting engine engineered for
 
 ## About the Project
 
-**Hush Processor** is a modular C++ application designed for advanced audio manipulation, real-time monitoring, and extensible plugin management. Built with a focus on low-latency performance, it combines a dedicated PortAudio backend, flexible automation modules, and an X11 graphical interface framework[span_0](start_span)[span_0](end_span).
+**Hush Processor** is a modular C++ application designed for advanced audio manipulation, real-time monitoring, and extensible plugin management. Built with a focus on low-latency performance, it combines a dedicated PortAudio backend, flexible automation modules, and an X11 graphical interface framework.
 
 ---
 
