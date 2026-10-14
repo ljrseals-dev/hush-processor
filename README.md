@@ -30,10 +30,10 @@ A high-performance C++ audio processing and plugin-hosting engine engineered for
 ## Key Features
 
 * **Advanced Audio Engine**: Low-latency audio processing pipeline backed by PortAudio and modular core components.
-* **Plugin Hosting**: Dynamic `plugin_host` architecture designed to load, manage, and execute external audio processing plugins seamlessly[span_2](start_span)[span_2](end_span).
-* **Comprehensive Core Utilities**: Includes built-in modules for automation, MIDI control, session management, watermarking, forensics, and clipboard integration[span_3](start_span)[span_3](end_span).
-* **Graphical User Interface**: Lightweight X11 GUI support (`gui_x11`) for visual interaction and control[span_4](start_span)[span_4](end_span).
-* **Rigorous Testing Suite**: Comprehensive unit and integration test coverage verifying audio pipelines, detectors, lanes, and real-time behavior[span_5](start_span)[span_5](end_span).
+* **Plugin Hosting**: Dynamic `plugin_host` architecture designed to load, manage, and execute external audio processing.
+* **Comprehensive Core Utilities**: Includes built-in modules for automation, MIDI control, session management, watermarking, forensics, and clipboard integration.
+* **Graphical User Interface**: Lightweight X11 GUI support (`gui_x11`) for visual interaction and control.
+* **Rigorous Testing Suite**: Comprehensive unit and integration test coverage verifying audio pipelines, detectors, lanes, and real-time behavior.
 
 ---
 
