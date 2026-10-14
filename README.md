@@ -51,15 +51,6 @@ A high-performance C++ audio processing and plugin-hosting engine engineered for
 ├── tests/                       # Test suite (audio, detectors, lanes, MSV)[span_14](start_span)[span_14](end_span)
 ├── CMakeLists.txt               # CMake build configuration[span_15](start_span)[span_15](end_span)
 └── *.md                         # Project documentation and historical notes[span_16](start_span)[span_16](end_span)
-Here is the updated, icon-free README.md with the fixed CI graphic badge and proper text spacing/formatting:
-```markdown
-# Hush Processor (`HUSH-2.2.0-reconciled`)
-
-[![CI Status](https://github.com/ljrseals-dev/hush-processor/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ljrseals-dev/hush-processor/actions/workflows/ci.yml)
-[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17%2F20-blue.svg)](https://isocpp.org/)
-[![License](https://img.shields.io/badge/license-Proprietary%2FLimited-green.svg)](LICENSE)
-
-A high-performance C++ audio processing and plugin-hosting engine engineered for real-time audio workflows, comprehensive session management, and robust hardware integration.
 
 ---
 
