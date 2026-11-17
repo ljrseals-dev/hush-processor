@@ -1,0 +1,10 @@
+# Dependencies and provenance
+| Component | Origin | Version | License | Path | Why |
+|---|---|---|---|---|---|
+| HUSH core (audio, time, forensics wrapper, watermark, clipboard, session, CLI) | your FortKnox-Cpp20-1_0_0.zip (audio, original) plus new code written during the 1.x series; renamed for HUSH 2.1.0 | 2.1.0 | see LICENSE | src/ | the application |
+| DawChecker HARDENED FORK (third_party/dawchecker_hardened; derived from the row below; changes in its PROVENANCE.md and CHANGES.diff) | this repo | 2.0.0 | MIT (c) 2026 Lewis James Seals Jr | third_party/dawchecker_hardened/ | the detectors/engine HUSH actually builds |
+| DawChecker core, ORIGINAL (reference only, not built; byte-identical to the archive) (6 files used earlier: ENFAnalyzer, UltrasonicScanner, WatermarkDetector, CodecScanner, AudioDeviceManager, DetectorTypes; rest of src/core vendored but uncalled) | your DawChecker-Secure-Ultimate-with-ServerProtection-1.zip, SHA-256 9dc185fe...f3735 | no tag | MIT (c) 2026 Lewis James Seals Jr | third_party/dawchecker/ | forensic detectors; byte-identical to the archive |
+| clipboard-mcp, server-protection | same archive | no tag | MIT (same archive) | optional/ | kept per your request; NOT built, installed or linked |
+| SoundCraft (automation + markers model logic, translated to C++ in src/automation.*, src/markers.*) | your soundcraft-main.zip | 0.5.0 | MIT OR Apache-2.0 (MIT relied on), (c) 2026 ArtCraft Team and the SoundCraft contributors | third_party/soundcraft_notice/ (license texts + NOTICE) | translated logic only; no Rust source or Cargo files included |
+| Standard library, libm, libc | system toolchain | g++ 14.2.0 (verified here) | n/a | n/a | runtime |
+No downloads, FetchContent, submodules, package managers, fonts, icons or generated binaries are included. PortAudio is an optional **system-installed** dependency when `HUSH_ENABLE_PORTAUDIO=ON` and CMake finds it; it is not vendored or downloaded. The Linux GUI uses system X11. Dear ImGui, ALSA, GLFW, VST3/CLAP/AU SDKs are not included. The plugin interface does not load third-party binary plugins.

@@ -1,3 +1,0 @@
-== audio_tests: unshare -rn build_gpp/hush_tests
-PASS: tone, peak/RMS, gain, mix, PCM16 roundtrip, and signed PCM24 decoding
-exit=0

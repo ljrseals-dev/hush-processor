@@ -1,3 +1,0 @@
-== asan_ubsan_audio: build_gpp/san/audio_asan
-PASS: tone generation, peak/RMS, gain, mix, PCM16 WAV roundtrip
-exit=0

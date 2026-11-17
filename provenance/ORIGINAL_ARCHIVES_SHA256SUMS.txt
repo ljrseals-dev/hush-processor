@@ -1,0 +1,5 @@
+627e830cfdca29e50ed3a71e824ca10e240ac2da8ce8a95dfb07e1d89f0ca62b  /mnt/data/HUSH-2.2.0-reconciled/provenance/original-archives/HUSH-2.0.0(1).zip
+5d790f35e4104152ce08ab86065842a21101c348011806b382cb820f2ac94279  /mnt/data/HUSH-2.2.0-reconciled/provenance/original-archives/HUSH-2.1.0.zip
+a6d66cd7b9b44e6e1dccb0994a0259e9d9a28cf86061e8c455aadc914fd1379f  /mnt/data/HUSH-2.2.0-reconciled/provenance/original-archives/HUSH-2.2.0-early-access.zip
+c36991ce7328f91e7189e387276d214a687143198fe32e33c6e8a86a1518bf7d  /mnt/data/HUSH-2.2.0-reconciled/provenance/original-archives/HUSH-2.2.0-release-gate.zip
+0a06cb3eda1f95670a81570c43a03c1c409234f086c4cfc498eab10573a09b68  /mnt/data/HUSH-2.2.0-reconciled/provenance/original-archives/Hush-2.0.0.zip
