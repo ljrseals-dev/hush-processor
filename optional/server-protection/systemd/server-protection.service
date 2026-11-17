@@ -1,0 +1,25 @@
+[Unit]
+Description=Server Protection Pro API + Dashboard
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/server-protection
+Environment=SPP_HOST=127.0.0.1
+Environment=SPP_PORT=8080
+Environment=SPP_REQUIRE_ROOT=1
+Environment=SPP_LOG=/var/log/server-protection/api.log
+ExecStart=/usr/bin/python3 /opt/server-protection/server_protection_api.py
+Restart=on-failure
+RestartSec=5
+# Hardening
+NoNewPrivileges=false
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/var/log/server-protection /var/lib/csf /etc/csf /tmp
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
