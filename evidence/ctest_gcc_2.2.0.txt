@@ -1,0 +1,20 @@
+Internal ctest changing into directory: /tmp/hush-build-2.2
+Test project /tmp/hush-build-2.2
+    Start 1: hush_audio_tests
+1/7 Test #1: hush_audio_tests .................   Passed    0.00 sec
+    Start 2: hush_realtime_tests
+2/7 Test #2: hush_realtime_tests ..............   Passed    0.00 sec
+    Start 3: hush_module_tests
+3/7 Test #3: hush_module_tests ................   Passed   14.89 sec
+    Start 4: hush_lanes_tests
+4/7 Test #4: hush_lanes_tests .................   Passed    0.00 sec
+    Start 5: hush_msv_tests
+5/7 Test #5: hush_msv_tests ...................   Passed    0.46 sec
+    Start 6: hush_detector_calibration
+6/7 Test #6: hush_detector_calibration ........   Passed    5.73 sec
+    Start 7: hush_cli_smoke
+7/7 Test #7: hush_cli_smoke ...................   Passed    2.92 sec
+
+100% tests passed, 0 tests failed out of 7
+
+Total Test time (real) =  24.01 sec

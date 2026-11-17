@@ -1,0 +1,36 @@
+HUSH offline DAW 2.2.0  (no network, no telemetry; every write is an explicit command; existing files are never overwritten without --overwrite)
+Audio:
+  hush tone OUT.wav SECONDS HZ [AMPLITUDE] [SAMPLE_RATE] [CHANNELS] [--overwrite]
+  hush info IN.wav | scan IN.wav          (basic statistics)
+  hush gain IN.wav OUT.wav DB [--overwrite]
+  hush mix OUT.wav IN.wav DB [IN.wav DB ...] [--overwrite]
+Forensics (local, read-only; indicators not proof):
+  hush forensics IN.wav [--ref REF.wav] [--report OUT.txt [--overwrite]]
+  hush codec-scan                          (explicit device/codec-name scan)
+  hush selfcheck                           (read-only OS security posture report)
+Watermark (explicit, offline, writes a NEW file):
+  hush wm-detect IN.wav --key N --bits N
+  hush wm-embed IN.wav OUT.wav --key N --payload 10110010 [--strength-db -52] --confirm [--overwrite]
+Session (offline, partial engine):
+  hush session-new S.fks [SAMPLE_RATE] [BPM]
+  hush session-info S.fks
+  hush session-add-track S.fks NAME
+  hush session-add-clip S.fks TRACK_INDEX CLIP.wav START_FRAME
+  hush session-gain S.fks TRACK_INDEX DB
+  hush session-move-clip S.fks TRACK_INDEX CLIP_INDEX START_FRAME
+  hush session-trim-clip S.fks TRACK_INDEX CLIP_INDEX SOURCE_OFFSET LENGTH_FRAMES
+  hush session-split-clip S.fks TRACK_INDEX CLIP_INDEX SPLIT_OFFSET_FRAMES
+  hush session-fades S.fks TRACK_INDEX CLIP_INDEX FADE_IN_FRAMES FADE_OUT_FRAMES
+  hush session-render S.fks OUT.wav [--overwrite]
+Automation lanes and markers (offline):
+  hush lane-mode S.fks TRACK off|read|touch|latch|touch/latch|write|trim
+  hush lane-point S.fks TRACK PARAM SAMPLE VALUE   (PARAM: volume, pan, pan2, mute, send_a_level, send_a_pan, send_a_mute, plugin:a:threshold)
+  hush lane-range S.fks TRACK PARAM START END VALUE | lane-thin S.fks TRACK PARAM TOL | lane-show S.fks TRACK [--param ID]
+  hush lane-record S.fks TRACK PARAM EVENTS.txt [--return SAMPLES]   (replay a live Write/Touch/Latch pass)
+  hush marker-add S.fks NAME SAMPLE [--kind marker|selection|none] [--end N] [--ruler 1-5] [--number N]
+  hush marker-list S.fks | marker-remove S.fks N | marker-recall S.fks N | marker-next S.fks SAMPLE | marker-prev S.fks SAMPLE
+  hush counter SAMPLE [--sr N] [--bpm B] [--fps 24|25|30|29.97df]   (big counter read-out)
+Time:
+  hush bbt BPM NUM DEN QUARTER_BEATS | timecode FRAME 24|25|30|29.97df
+Text safety:
+  hush sensitive-check FILE                (kinds only; never prints the matches)

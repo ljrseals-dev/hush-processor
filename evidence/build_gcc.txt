@@ -1,0 +1,12 @@
+[  4%] Built target hush_audio
+[ 27%] Built target dawchecker_core
+[ 38%] Built target hush_realtime
+[ 43%] Built target hush_tests
+[ 47%] Built target msv_tests
+[ 52%] Built target detector_calibration
+[ 77%] Built target hush_modules
+[ 86%] Built target hush
+[ 86%] Built target hush_gui
+[ 90%] Built target realtime_tests
+[ 95%] Built target module_tests
+[100%] Built target lanes_tests

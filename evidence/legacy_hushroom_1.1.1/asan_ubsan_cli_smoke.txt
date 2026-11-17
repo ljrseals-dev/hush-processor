@@ -1,0 +1,56 @@
+== asan_ubsan_cli_smoke: bash scripts/smoke_test.sh build_gpp/san/hushroom_asan
+[ ok ] tone generation
+[ ok ] info reads WAV
+[ ok ] forensics prints limitations
+[ ok ] report written only on request, includes hash
+[ ok ] report refuses to overwrite existing file
+[ ok ] wm-embed refuses without --confirm
+[ ok ] no output file created without --confirm
+[ ok ] wm-embed refuses to overwrite its own input
+[ ok ] wm-embed with --confirm
+[ ok ] output labelled; key not written to label
+[ ok ] wm-detect finds it with the right key
+[ ok ] wm-detect negative with wrong key
+[ ok ] wm-detect negative on the original
+[ ok ] original unchanged (tone regeneration is byte-identical)
+[ ok ] session build commands
+[ ok ] session render (relative clip path)
+[ ok ] render refuses to overwrite without --overwrite
+[ ok ] malformed session fails with an error
+[ ok ] bbt conversion
+[ ok ] drop-frame timecode
+[ ok ] sensitive-check reports kind, never the secret
+[ ok ] codec-scan runs only when invoked
+[ ok ] unknown command fails
+[ ok ] selfcheck is read-only and informational
+[ ok ] tone refuses to overwrite an existing file
+[ ok ] gain refuses output equal to input
+[ ok ] output path containing '..' is refused
+[ ok ] refuses to write through a symlink
+[ ok ] --overwrite works when explicitly given
+[ ok ] lane session setup
+[ ok ] lane-mode accepts touch/latch
+[ ok ] lane-mode rejects an unknown mode
+[ ok ] breakpoints on volume, plugin parameter and send lanes
+[ ok ] lane-point rejects an unknown parameter id
+[ ok ] lane-show lists lanes
+[ ok ] lane-show --param prints breakpoints
+[ ok ] lane-record replays a Touch pass
+[ ok ] touched span was written to the send lane
+[ ok ] lane-record rejects events that go back in time
+[ ok ] lane-range writes a constant range
+[ ok ] lane-thin
+[ ok ] render with automation lanes (a.wav was regenerated as 1 s earlier in this script)
+[ ok ] marker-add (marker and selection)
+[ ok ] marker-add rejects a duplicate number
+[ ok ] marker-add rejects a backwards selection
+[ ok ] marker-list
+[ ok ] marker-next
+[ ok ] marker-prev
+[ ok ] marker-recall returns the stored range
+[ ok ] marker-remove
+[ ok ] session with lanes and markers reloads
+[ ok ] big counter shows timecode, bars|beats, min:sec and samples
+[ ok ] counter rejects an unsupported frame rate
+smoke: 53 passed, 0 failed
+exit=0

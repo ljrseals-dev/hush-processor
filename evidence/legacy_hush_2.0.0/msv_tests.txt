@@ -1,0 +1,31 @@
+== msv_tests: unshare -rn build_gpp/msv_tests
+[ ok ] RunningWindow matches a naive std::deque over 200k random pushes (max |dmean|=0.000000, max |dvar|=0.000000)
+[ ok ] partial window statistics
+[ ok ] all neutralizers default to OFF after construction
+[ ok ] render_neutralized with an empty enable set is bit-identical
+[ ok ] render_neutralized never modifies its input
+[ ok ] with both enabled (explicit) the 60 Hz + 19.2 kHz content is reduced
+[ ok ] detectors detect that content (so the neutralizers have something to act on)
+[ ok ] process() output is bit-identical to the live input for 144000 samples (even while an Alert is raised)
+[ ok ] the engine did raise an ultrasonic verdict during that run (Alert)
+[ ok ] zero heap allocations across 288000 process() calls + snapshot() reads (allocations counted: 0)
+[ ok ] 19.2 kHz tone: same verdict at 44.1/48/96 kHz (Alert/Alert/Alert)
+[ ok ] 60 Hz tone: same verdict at 44.1/48/96 kHz (Active/Active/Active)
+[ ok ] white noise: Idle at all three rates
+[ ok ] residual: live identical to reference stays Idle
+[ ok ] residual: persistent additive noise ~ -36 dB re reference is reported (Active)
+[ ok ] residual: silent reference is not reported
+[ ok ] residual: a difference below the -60 dB floor is not reported
+[ ok ] residual: never goes above Active (a strongly different signal is not an Alert)
+[ ok ] a 85 ms excursion at 9 different alignments never trips a verdict (needs 3 consecutive blocks)
+[ ok ] a sustained 600 ms tone does
+[info] documented limit: a burst of 2+ blocks (>= ~170 ms) can reach Active depending on alignment
+[ ok ] snapshot coherence: 932111 concurrent reads, 0 torn (tamperScore always equals the aggregate of the confidences in the same snapshot)
+[ ok ] flushDenormal zeroes subnormals only
+[ ok ] denormal-range input produces no subnormal or non-finite published values
+[ ok ] invalid sample rates fall back safely
+[ ok ] self-check mirrors the compiler flags actually used (stack protector=yes, CET=yes)
+[ ok ] self-check reports the FORTIFY_SOURCE level it was built with
+
+26/26 checks passed
+exit=0

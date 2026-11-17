@@ -1,0 +1,7 @@
+HUSH active-code static audit: /mnt/data/HUSH-work/HUSH-2.1.0/scripts/..
+Scope: active C++ source, hardened DawChecker source and CMake. Optional tools are not part of the DAW build.
+NOTE: text search is advisory, not a definitive security audit. Review every hit manually.
+CMakeLists.txt:9:# The build is offline-first: no FetchContent, no git operations, dependency downloads, or install scripts.
+src/main.cpp:35:R"(HUSH offline DAW 2.1.0  (no network, no telemetry; every write is an explicit command; existing files are never overwritten without --overwrite)
+Separate optional-tool review required: optional/clipboard-mcp and optional/server-protection.
+Search complete; this is not a security certification.

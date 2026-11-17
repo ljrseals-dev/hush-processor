@@ -1,0 +1,24 @@
+--- build_gpp/hush
+PIE (ELF type DYN): yes
+RELRO (GNU_RELRO):  yes
+BIND_NOW:           yes
+NX stack:           yes
+stack protector:    yes (__stack_chk_fail imported)
+CET (IBT/SHSTK):    NO
+FORTIFY (_chk fns): yes (_chk functions imported)
+--- build_gpp/module_tests
+PIE (ELF type DYN): yes
+RELRO (GNU_RELRO):  yes
+BIND_NOW:           yes
+NX stack:           yes
+stack protector:    yes (__stack_chk_fail imported)
+CET (IBT/SHSTK):    NO
+FORTIFY (_chk fns): yes (_chk functions imported)
+--- build_gpp/msv_tests
+PIE (ELF type DYN): yes
+RELRO (GNU_RELRO):  yes
+BIND_NOW:           yes
+NX stack:           yes
+stack protector:    yes (__stack_chk_fail imported)
+CET (IBT/SHSTK):    NO
+FORTIFY (_chk fns): yes (_chk functions imported)

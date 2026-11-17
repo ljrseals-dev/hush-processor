@@ -1,0 +1,14 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/data/HUSH-work/HUSH-2.0.0/build_gpp
+[  5%] Built target hush_audio
+[ 34%] Built target dawchecker_core
+[ 40%] Built target hush_tests
+[ 71%] Built target hush_modules
+[ 77%] Built target msv_tests
+[ 82%] Built target detector_calibration
+[ 88%] Built target hush
+[ 94%] Built target module_tests
+[100%] Built target lanes_tests
+built HUSH and test binaries in build_gpp
+run: ctest --test-dir build_gpp --output-on-failure

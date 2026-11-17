@@ -1,0 +1,1 @@
+PASS: GUI remained open for 3 seconds under Xvfb.

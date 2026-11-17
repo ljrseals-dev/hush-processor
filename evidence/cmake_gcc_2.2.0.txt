@@ -1,0 +1,5 @@
+-- HUSH: enabling system PortAudio backend (/usr/lib/x86_64-linux-gnu/libportaudio.so.2); no network fetch
+-- HUSH: enabling optional native X11 GUI
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/hush-build-2.2

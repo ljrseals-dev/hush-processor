@@ -1,0 +1,19 @@
+[  4%] Built target hush_audio
+[ 27%] Built target dawchecker_core
+[ 31%] Built target hush_tests
+[ 34%] Building CXX object CMakeFiles/hush_realtime.dir/src/portaudio_backend.cpp.o
+[ 38%] Built target msv_tests
+[ 43%] Built target detector_calibration
+[ 68%] Built target hush_modules
+[ 72%] Built target lanes_tests
+[ 75%] Linking CXX static library libhush_realtime.a
+[ 81%] Built target hush_realtime
+[ 84%] Linking CXX executable hush
+[ 86%] Building CXX object CMakeFiles/hush_gui.dir/src/gui_x11.cpp.o
+[ 88%] Built target hush
+[ 90%] Linking CXX executable module_tests
+[ 93%] Built target module_tests
+[ 95%] Linking CXX executable realtime_tests
+[ 97%] Built target realtime_tests
+[100%] Linking CXX executable hush_gui
+[100%] Built target hush_gui

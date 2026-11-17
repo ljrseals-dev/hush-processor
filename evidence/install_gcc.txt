@@ -1,0 +1,3 @@
+-- Install configuration: "Release"
+-- Installing: /tmp/HUSH-install-2.1.0/bin/hush
+-- Up-to-date: /tmp/HUSH-install-2.1.0/bin/hush_gui
