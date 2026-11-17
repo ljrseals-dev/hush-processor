@@ -4,7 +4,7 @@ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 NONINFRINGEMENT.
 
-<img src="1792013329061.jpg" alt="HUSH 2.2.0 Audio Workstation Banner" width="100%">
+<img src="DSC_1327.CR2.jpg" alt="HUSH Engine 2.2.0 Audio Workstation Banner" width="100%">
 
 # HUSH 2.2.0 — private, offline-first C++20 audio workstation (early development release)
 
