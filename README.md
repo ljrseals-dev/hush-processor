@@ -1,101 +1,68 @@
-Copyright © 2026 Lewis James Seals Jr. All rights reserved.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT.
-<div align="center">
+# HUSH 2.2.0 — private, offline-first C++20 audio workstation (early development release)
 
-# HUSH PROCESSOR v0.2.0
-### *Zero Telemetry. Deterministic Real-Time Audio Engine.*
+HUSH is an offline-first C++20 audio application with a WAV/session core, a native Linux/X11 arrangement UI, a real-time float mixer callback, an optional system PortAudio output backend, session editing APIs, local forensics, and experimental watermark tools. It is **not yet a production-complete DAW**: the current GUI is an early Linux/X11 implementation, MIDI is an event queue rather than a hardware MIDI subsystem, and plugin hosting is an in-process DSP interface rather than a VST3/CLAP/AU binary host.
 
-<img src="1792013329061.jpg" alt="Hush Engine v0.2.0 Banner" width="100%">
+## Implemented in this tree
 
-[![C++20 Standard](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
-[![Zero Telemetry](https://img.shields.io/badge/Telemetry-None-success.svg)]()
-[![SIMD Dispatch](https://img.shields.io/badge/SIMD-SSE2%20%7C%20AVX2%20%7C%20NEON-orange.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+| Area | Current capability | Limitations |
+|---|---|---|
+| Audio files | WAV import: PCM 8/16/24/32-bit and IEEE float32; atomic PCM16 WAV export; tone, gain, mix and stats | No FLAC/AIFF/MP3; large WAVs require memory proportional to file size |
+| Session editing | Track/clip model; v1 and v2 session reader; v2 stores source trim, clip length, fades; tested move/trim/split/fade APIs; bounded snapshot undo/redo | Clip-edit operations are library APIs, not all exposed as GUI tools; GUI edits gain/mute only |
+| Offline render | Track gain/mute, volume/mute automation, clip trim and fades | Pan/send/plugin automation is stored but not rendered |
+| Real-time mixer | Preloaded audio; bounded callback loop; no callback allocations; transport, seek, track gain/mute, master gain and peak meter | Playback only; no recording/monitoring or device hot-plug recovery yet |
+| Linux device output | Optional system PortAudio backend; default output device; no dependency downloads | Physical hardware output was not exercised in this environment; GUI currently uses default output, not a device chooser |
+| GUI | Native X11 window: transport, timeline, clip waveform overview, track rows, mixer gain, mute, peak meter, Ctrl+S, Ctrl+Z, Ctrl+Y | Linux/X11 only in this release; no clip drag/split UI, zoom/scroll, plugin panels, accessibility pass or multi-platform GUI |
+| MIDI | Validated channel-voice event type and fixed-capacity SPSC queue | No OS MIDI device enumeration/input/output, note editor, or MIDI track UI |
+| Plugins | In-process DSP plugin contract and prepared plugin chain | No untrusted binary loading, VST3/CLAP/AU SDK integration, sandboxing or third-party plugin compatibility claim |
+| Forensics | Local, read-only DawChecker-derived detectors and HUSH-native indicators | Findings are indicators, not proof; calibration uses a synthetic corpus |
+| Watermark | Explicit offline detect/embed with label file | Experimental; robustness and audibility remain limited/unverified |
+| Privacy | No telemetry, updater, remote control, or network client in the active HUSH build; optional tools excluded | No independent security certification or full network-isolation certification claimed |
 
-</div>
+## Build (offline)
 
----
-# Hush Processor (`HUSH-2.2.0-reconciled`)
-[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17%2F20-blue.svg)](https://isocpp.org/)
-[![License](https://img.shields.io/badge/license-Proprietary%2FLimited-green.svg)](LICENSE)
+Requirements: CMake 3.16+ and a C++20 compiler. The optional X11 GUI is built when X11 is installed. The PortAudio hardware backend is **disabled by default**. After approving your system audio stack, opt in with `-DHUSH_ENABLE_PORTAUDIO=ON`; CMake only discovers a system-installed library and never downloads it. PortAudio may use a system-configured JACK/remote-audio endpoint, so enabling it is an explicit trust decision. To build without optional backends:
 
-A high-performance C++ audio processing and plugin-hosting engine engineered for real-time audio workflows, comprehensive session management, and robust hardware integration.
-
----
-
-## About the Project
-
-**Hush Processor** is a modular C++ application designed for advanced audio manipulation, real-time monitoring, and extensible plugin management. Built with a focus on low-latency performance, it combines a dedicated PortAudio backend, flexible automation modules, and an X11 graphical interface framework.
-
----
-
-## Key Features
-
-* **Advanced Audio Engine**: Low-latency audio processing pipeline backed by PortAudio and modular core components.
-* **Plugin Hosting**: Dynamic `plugin_host` architecture designed to load, manage, and execute external audio processing.
-* **Comprehensive Core Utilities**: Includes built-in modules for automation, MIDI control, session management, watermarking, forensics, and clipboard integration.
-* **Graphical User Interface**: Lightweight X11 GUI support (`gui_x11`) for visual interaction and control.
-* **Rigorous Testing Suite**: Comprehensive unit and integration test coverage verifying audio pipelines, detectors, lanes, and real-time behavior.
-
----
-
-## Repository Structure
-
-```text
-├── .github/workflows/ci.yml     # Continuous Integration workflows[span_6](start_span)[span_6](end_span)
-├── src/                         # Core C++ source files[span_7](start_span)[span_7](end_span)
-│   ├── audio.cpp / .hpp         # Core audio processing logic[span_8](start_span)[span_8](end_span)
-│   ├── audio_engine.cpp / .hpp  # Main audio engine orchestration[span_9](start_span)[span_9](end_span)
-│   ├── portaudio_backend.cpp    # PortAudio hardware backend implementation[span_10](start_span)[span_10](end_span)
-│   ├── plugin_host.cpp          # Plugin hosting and management system[span_11](start_span)[span_11](end_span)
-│   ├── gui_x11.cpp              # X11 graphical user interface module[span_12](start_span)[span_12](end_span)
-│   └── main.cpp                 # Application entry point[span_13](start_span)[span_13](end_span)
-├── tests/                       # Test suite (audio, detectors, lanes, MSV)[span_14](start_span)[span_14](end_span)
-├── CMakeLists.txt               # CMake build configuration[span_15](start_span)[span_15](end_span)
-└── *.md                         # Project documentation and historical notes[span_16](start_span)[span_16](end_span)
-
-```
-## Building & Installation
-### Prerequisites
-Ensure your system has the following dependencies installed before building:
- * A modern C++ compiler supporting C++17 or later (GCC, Clang, or MSVC)
- * CMake (version 3.15 or higher)
- * PortAudio development libraries (libportaudio2 / portaudio-dev)
- * X11 development headers (for graphical interface support)
-### Quick Start
- 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/ljrseals-dev/hush-processor.git](https://github.com/ljrseals-dev/hush-processor.git)
-   cd hush-processor
-   
-   ```
- 2. **Configure the build with CMake:**
-   ```bash
-   mkdir build && cd build
-   cmake ..
-   
-   ```
- 3. **Compile the application:**
-   ```bash
-   cmake --build . --config Release
-   
-   ```
-## Testing & Quality Assurance
-The repository includes a robust testing suite located in the tests/ directory to validate stability, detector calibration, and real-time performance. Run the tests using CTest after building:
-```bash
-cd build
-ctest --output-on-failure
-
-```
-## Documentation
-Detailed technical notes, reconciliation history, and build results are available directly in the repository root:
- * MSV_ENGINE_NOTES.md
- * RECONCILIATION.md
- * SECURITY_AND_PRIVACY.md
- * LOCAL_BUILD_RESULTS.md
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DHUSH_WARNINGS_AS_ERRORS=ON -DHUSH_ENABLE_PORTAUDIO=OFF -DHUSH_BUILD_X11_GUI=OFF
+cmake --build build --parallel 2
+ctest --test-dir build --output-on-failure
 ```
 
+The verified builds in this release are Linux x86-64 with GCC 14.2 and Clang 17. Windows/macOS/ARM are not verified. See `BUILD_TEST_RESULTS.txt` and `SECURITY_AND_PRIVACY.md` for exact scope and gaps.
+
+## Run
+
+```sh
+hush help
+hush tone /tmp/test.wav 1 440 0.25 48000 2
+hush session-new /tmp/song.fks 48000 120
+hush session-add-track /tmp/song.fks Vocals
+hush session-add-clip /tmp/song.fks 0 /tmp/test.wav 0
+hush session-trim-clip /tmp/song.fks 0 0 0 48000
+hush session-fades /tmp/song.fks 0 0 2400 2400
+hush session-move-clip /tmp/song.fks 0 0 12000
+hush session-split-clip /tmp/song.fks 0 0 24000
+hush session-render /tmp/song.fks /tmp/render.wav
+hush_gui /tmp/song.fks   # Linux/X11 build only
 ```
+
+GUI shortcuts: Space play/pause; S stop; Ctrl+S save; Ctrl+Z undo; Ctrl+Y redo; Q/Esc quit. When built with `HUSH_ENABLE_PORTAUDIO=ON`, the GUI uses the default system output device via PortAudio. If no output device is available, the timeline can still be inspected.
+
+## Security boundaries
+
+- No network fetches occur during the build; there is no FetchContent or dependency installer in CMake.
+- WAV and session output use temporary files and atomic replace/create on POSIX. Explicit no-overwrite mode is enforced at the final create operation; symlink targets are refused.
+- `optional/clipboard-mcp/` and `optional/server-protection/` are separate reference tools, not linked or installed by the DAW. Their installers and network/root behavior are not part of HUSH and must not be run casually.
+- Forensic reports must not be interpreted as proof of authenticity, authorship, or tampering.
+
+## Release scope
+
+This is a tested development release, not a security-certified or feature-complete commercial DAW. The Linux GCC and Clang test gates pass; hardware playback, Windows/macOS builds, real MIDI I/O, VST3/CLAP/AU hosting, real recording, and independent security review remain open. Consult `PORTING_STATUS.md` for the staged checklist.
+
+
+## Experimental audio capture (2.2.0)
+
+When built with `-DHUSH_ENABLE_PORTAUDIO=ON`, the X11 GUI now has a Record/Stop Rec transport control. It opens the system default input and output as a duplex PortAudio stream, captures interleaved float audio into a bounded preallocated buffer (up to five minutes by default), and writes a PCM16 WAV take when recording stops. Take filenames are unique and existing files are not overwritten. The capture callback performs no allocation or file I/O.
+
+This is the first recording slice, **not a complete recording workflow**. It currently records the default input, not an individually armed track; it does not implement punch ranges, pre/post-roll, loop playlists/comping, live input monitoring through the channel strip, device chooser/hot-plug recovery, or autosave/crash recovery. It has not been tested against physical recording hardware in this environment. Recording requires explicit opt-in to the system PortAudio backend and access to default input/output devices.

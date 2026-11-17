@@ -1,0 +1,36 @@
+HUSH 2.2.0 build and release-gate results — generated 2026-10-13 UTC
+
+Verified build environments
+- Linux x86-64, GNU g++ 14.2.0, CMake Release, HUSH_WARNINGS_AS_ERRORS=ON: configure/build PASS.
+- Linux x86-64, Clang 17.0.0, CMake Release, HUSH_WARNINGS_AS_ERRORS=ON: configure/build PASS.
+- GCC test configuration explicitly opted in to system PortAudio at /usr/lib/x86_64-linux-gnu/libportaudio.so.2; no network fetch or package install occurred. The source default is PortAudio OFF.
+- Clang configuration disabled PortAudio to verify the no-device/no-library fallback builds.
+- Optional Linux X11 GUI compiled in both toolchains.
+
+Functional tests
+- GCC CTest: 7/7 PASS (audio, realtime engine/MIDI/plugin interface, modules/session, lanes, MSV, detector calibration, CLI smoke). See evidence/ctest_gcc.txt.
+- Clang CTest: 7/7 PASS on Linux x86-64. See evidence/ctest_clang.txt.
+- CLI smoke: 57 checks passed, 0 failed, including session clip trim/fades/move/split commands and v2 persistence. See evidence/cli_smoke.txt.
+- Module/session suite: 117/117 checks passed, including clip edit, undo/redo, v1 compatibility, v2 persistence, render fades, and symlink save/load guards.
+- X11 GUI: stayed open for 3 seconds under Xvfb using a generated session/audio file. Startup/render loop only; no human UI acceptance test was performed.
+- Install test: CMake install passed to /tmp/HUSH-install-2.1.0 for the 2.1.0 baseline; installed `hush help` printed command help.
+- ASan/UBSan: selected audio, realtime, module (117 checks), lanes, MSV and CLI smoke suites passed 6/6. The instrumented detector-calibration run exceeded the available execution window; no full sanitizer-suite pass is claimed. See evidence/asan_ubsan_selected.txt.
+- Source-pattern scan: advisory results in evidence/source_audit.txt; it is not a complete security audit.
+- Binary hashes: evidence/SHA256SUMS_binaries.txt. ELF inspection: evidence/hardening_readelf.txt.
+
+Security and release caveats
+- WAV writer and session saver use same-directory temporary files and atomic create/replace on POSIX; no-overwrite is enforced at final creation. Symlink targets are rejected. Session load is bounded to 4 MiB and refuses symlink input.
+- No network-isolated namespace/packet-capture/DNS monitoring run was completed for this exact package. CMake contains no FetchContent or dependency download logic; PortAudio and X11 are system libraries only.
+- PortAudio output was not tested against a physical audio device. GUI uses the OS default output device and has no device chooser/hotplug recovery.
+- MIDI support is a bounded event queue, not OS MIDI I/O. Plugin support is an in-process DSP interface, not VST3/CLAP/AU binary hosting. Recording and monitoring are not implemented.
+- Windows/macOS/ARM native builds were not run. A GitHub Actions matrix for Ubuntu/Windows/macOS was added but remote CI has not been executed.
+- Full ASan/UBSan detector-calibration, TSan, parser fuzzing, independent third-party audit and security certification are not claimed.
+- Optional clipboard-MCP and server-protection tools remain excluded from the HUSH build; they were not fully reviewed or activated.
+
+
+HUSH 2.2.0 early recording slice (2026-10-14)
+- Configure: `cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHUSH_WARNINGS_AS_ERRORS=ON -DHUSH_ENABLE_PORTAUDIO=ON -DHUSH_BUILD_X11_GUI=ON` — passed.
+- Build: `cmake --build build -j2` — passed; system PortAudio library and X11 found.
+- CTest: 7/7 passed (audio, realtime, modules, lanes, MSV, detector calibration, CLI smoke).
+- No physical audio device was available/used for this verification. No claim of hardware recording, latency, or monitoring validation is made.
+- The capture path is bounded to 300 seconds per take and writes PCM16 WAV after stopping; punch/loop playlists/input monitoring/autosave recovery remain unimplemented.
